@@ -1,0 +1,193 @@
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js  
+file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/node_modules/openai/error.mjs:40
+            return new BadRequestError(status, error, message, headers);
+                   ^
+
+BadRequestError: 400 You uploaded an unsupported image. Please make sure your image is below 20 MB in size and is of one the following formats: ['png', 'jpeg', 'gif', 'webp'].
+    at APIError.generate (file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/node_modules/openai/error.mjs:40:20)
+    at OpenAI.makeStatusError (file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/node_modules/openai/core.mjs:248:25)  
+    at OpenAI.makeRequest (file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/node_modules/openai/core.mjs:290:30)      
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async main (file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/index.js:7:20) {
+  status: 400,
+  headers: {
+    'alt-svc': 'h3=":443"; ma=86400',
+    'cf-cache-status': 'DYNAMIC',
+    'cf-ray': '84a3cc35ef27becc-YYC',
+    connection: 'keep-alive',
+    'content-length': '284',
+    'content-type': 'application/json',
+    date: 'Tue, 23 Jan 2024 23:25:45 GMT',
+    'openai-organization': 'user-tj8qc93nksx2sleiprmxozn5',
+    'openai-processing-ms': '474',
+    'openai-version': '2020-10-01',
+    server: 'cloudflare',
+    'set-cookie': '__cf_bm=aafWj2Xy3PHmMUbV_y4PDP4W4ZKIsrJ_iQBKtJxWleI-1706052345-1-AYBsyYQ3d6B4WpUbaaDJbX/vYToVUyinE4NTM6ofYSDmKD3YBANVK4g9VcJ65jSuYDxfoDPKp5avZQU54s628LY=; path=/; expires=Tue, 23-Jan-24 23:55:45 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None, _cfuvid=sGurfgX2fD2CZxS00K22fr2x2kth6S8.E9FmEhY1EFc-1706052345839-0-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=15724800; includeSubDomains',    
+    'x-ratelimit-limit-requests': '500',
+    'x-ratelimit-limit-tokens': '10000',
+    'x-ratelimit-remaining-requests': '499',
+    'x-ratelimit-remaining-tokens': '9944',
+    'x-ratelimit-reset-requests': '2m52.8s',
+    'x-ratelimit-reset-tokens': '336ms',
+    'x-request-id': '6e9eb3cceefb07fd1e607774f12c88e9'
+  },
+  error: {
+    message: "You uploaded an unsupported image. Please make sure your image is below 20 MB in size and is of one the following formats: ['png', 'jpeg', 'gif', 'webp'].",
+    type: 'invalid_request_error',
+    param: null,
+    code: 'invalid_image_format'
+  },
+  code: 'invalid_image_format',
+  param: null,
+  type: 'invalid_request_error'
+}
+
+Node.js v20.11.0
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> ^C
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/node_modules/openai/error.mjs:40
+            return new BadRequestError(status, error, message, headers);   
+                   ^
+
+BadRequestError: 400 Invalid image.
+    at APIError.generate (file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/node_modules/openai/error.mjs:40:20)       
+    at OpenAI.makeStatusError (file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/node_modules/openai/core.mjs:248:25)  
+    at OpenAI.makeRequest (file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/node_modules/openai/core.mjs:290:30)      
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async main (file:///C:/Users/kaide/OneDrive/Desktop/openai-vision-testing/openai-vision-test/index.js:7:20) {
+  status: 400,
+  headers: {
+    'alt-svc': 'h3=":443"; ma=86400',
+    'cf-cache-status': 'DYNAMIC',
+    'cf-ray': '84a3ccea6aa5bee8-YYC',
+    connection: 'keep-alive',
+    'content-length': '126',
+    'content-type': 'application/json',
+    date: 'Tue, 23 Jan 2024 23:26:15 GMT',
+    'openai-organization': 'user-tj8qc93nksx2sleiprmxozn5',
+    'openai-processing-ms': '1260',
+    'openai-version': '2020-10-01',
+    server: 'cloudflare',
+    'set-cookie': '__cf_bm=ZqPL80XznfXgdfx27sQ7Gf21DiLDgmBBxKAvSO8eqyE-1706052375-1-AXUCW14iYJylaIkpAy01no/LHiIHTJR8FrvA+0MznOCBOJW+zK7LRQyaQ14aemdAxqEKVjlvHyQN4RPP0ynYmIs=; path=/; expires=Tue, 23-Jan-24 23:56:15 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None, _cfuvid=6MMGBO8wApwdumm99TPA0wiR6fADzClWRR2kNBuq7iE-1706052375491-0-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=15724800; includeSubDomains',    
+    'x-ratelimit-limit-requests': '500',
+    'x-ratelimit-limit-tokens': '10000',
+    'x-ratelimit-remaining-requests': '498',
+    'x-ratelimit-remaining-tokens': '9944',
+    'x-ratelimit-reset-requests': '5m16.737s',
+    'x-ratelimit-reset-tokens': '336ms',
+    'x-request-id': '66316aa643dd0af09fd767fe242d8be7'
+  },
+  error: {
+    message: 'Invalid image.',
+    type: 'invalid_request_error',
+    param: null,
+    code: null
+  },
+  code: null,
+  param: null,
+  type: 'invalid_request_error'
+}
+
+Node.js v20.11.0
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: 'bridge,snow,people,trees,cables,handrails,suspension,'       
+  },
+  finish_reason: 'length',
+  index: 0
+}
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: 'bridge,snow,2 people,cables,forest,handrails,riverbanks'     
+  },
+  finish_reason: 'length',
+  index: 0
+}
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: 'snow, 2 people, suspension bridge, trees, cables, handrails,'
+  },
+  finish_reason: 'length',
+  index: 0
+}
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: '2 people, suspension bridge, snow, trees, cables, railing, footprints'
+  },
+  finish_reason: 'length',
+  index: 0
+}
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: 'capsules, pills, medicine, red pills, blue background, tablet, imprint'
+  },
+  finish_reason: 'length',
+  index: 0
+ai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: '5 people,smiles,business attire,office,necklace,shirts'
+  },
+  finish_reason: 'length',
+  index: 0
+}
+PS^C   sers\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test>
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: 'rat, night-vision, reflective-eyes, twigs, leaves, nature'
+  },
+  finish_reason: 'length',
+  index: 0
+}
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: 'sunset, beach, 4 people, bench, sand, ocean, sky'
+  },
+  finish_reason: 'length',
+  index: 0
+}
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: '1 person,1 airplane,1 backpack,blue shirt,denim,red'
+  },
+  finish_reason: 'length',
+  index: 0
+}
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: '1 person, 1 airplane, 1 backpack, blue shirt, denim jeans'
+  },
+  finish_reason: 'length',
+  index: 0
+}
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> node index.js
+{
+  message: {
+    role: 'assistant',
+    content: '1 person, horizon, sky, ground, landscape, outdoors'
+  },
+  finish_reason: 'stop',
+  index: 0
+}
+PS C:\Users\kaide\OneDrive\Desktop\openai-vision-testing\openai-vision-test> https://www.shutterstock.com/image-photo/man-standing-far-away-on-260nw-530129707.jp
