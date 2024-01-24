@@ -19,7 +19,7 @@ async function main() {
     }
 
     try {
-        while (imageIncriment < imageObjects.length) {
+        while (imageIncrement < imageObjects.length) {
             let requestImagesArray = [];
             let maxIncrement = imageIncrement + 10;
             let frameGroup = 1;
