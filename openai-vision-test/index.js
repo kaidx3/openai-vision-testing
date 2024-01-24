@@ -7,7 +7,7 @@ const openai = new OpenAI({ apiKey: process.env.API_KEY });
 async function main() {
     let tags = [];
     let imageObjects = [];
-    let imageIncriment = 0;
+    let imageIncrement = 0;
 
     for (let url of imageUrls) {
         imageObjects.push({
@@ -21,12 +21,12 @@ async function main() {
     try {
         while (imageIncriment < imageObjects.length) {
             let requestImagesArray = [];
-            let maxIncrement = imageIncriment + 10;
+            let maxIncrement = imageIncrement + 10;
             let frameGroup = 1;
 
-            for (imageIncriment; imageIncriment <= maxIncrement; imageIncriment++) {
-                if (imageIncriment == imageObjects.length) {
-                    console.log("return");
+            for (imageIncrement; imageIncrement <= maxIncrement; imageIncrement++) {
+                if (imageIncrement == imageObjects.length) {
+                    console.log("All frames analyzed.");
                     break;
                 }
 
