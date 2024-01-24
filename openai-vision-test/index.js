@@ -30,7 +30,7 @@ async function main() {
                     break;
                 }
 
-                requestImagesArray.push(imageObjects[imageIncriment]);
+                requestImagesArray.push(imageObjects[imageIncrement]);
             }
 
             const response = await openai.chat.completions.create({
