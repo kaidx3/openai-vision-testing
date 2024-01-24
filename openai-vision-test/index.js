@@ -1,37 +1,54 @@
 import OpenAI from "openai";
 import "dotenv/config";
 import { imageUrls } from "../private/imageUrls.js";
+import { start } from "repl";
 
 const openai = new OpenAI({ apiKey: process.env.API_KEY });
+const frameGroupSize = 5;
+const rateLimitPauseSeconds = 2;
+const imageDetail = "low";
+
+function pause() {
+    return new Promise((resolve) => setTimeout(resolve, rateLimitPauseSeconds * 1000));
+}
 
 async function main() {
+    console.log(`**********`);
+    console.log(`Framegroup size: ${frameGroupSize} frames`);
+    console.log(`Rate limit pause: ${rateLimitPauseSeconds} seconds`);
+    console.log(`Image detail: ${imageDetail}`);
+    console.log(`**********\n`);
+
     let tags = [];
-    let imageObjects = [];
-    let imageIncrement = 0;
+    let requestImageObjects = [];
+    let currentFrame = 0;
+    let frameGroup = 1;
+    let totalAnalysisTimeSeconds = 0;
 
     for (let url of imageUrls) {
-        imageObjects.push({
+        requestImageObjects.push({
             type: "image_url",
             image_url: {
                 url: url,
+                detail: imageDetail,
             },
         });
     }
 
     try {
-        while (imageIncrement < imageObjects.length) {
+        while (currentFrame < requestImageObjects.length) {
             let requestImagesArray = [];
-            let maxIncrement = imageIncrement + 10;
-            let frameGroup = 1;
+            let maxIncrement = currentFrame + frameGroupSize;
 
-            for (imageIncrement; imageIncrement <= maxIncrement; imageIncrement++) {
-                if (imageIncrement == imageObjects.length) {
-                    console.log("All frames analyzed.");
+            for (currentFrame; currentFrame <= maxIncrement; currentFrame++) {
+                if (currentFrame == requestImageObjects.length) {
                     break;
                 }
 
-                requestImagesArray.push(imageObjects[imageIncrement]);
+                requestImagesArray.push(requestImageObjects[currentFrame]);
             }
+
+            let startTime = new Date();
 
             const response = await openai.chat.completions.create({
                 model: "gpt-4-vision-preview",
@@ -63,13 +80,19 @@ async function main() {
                 ],
             });
 
+            let endTime = new Date();
+            totalAnalysisTimeSeconds += (endTime - startTime) / 1000;
+
+            console.log(`Frame group ${frameGroup} analyzed (${((endTime - startTime) / 1000).toFixed(2)}s)`);
+
             let responseTags = response.choices[0].message.content.split(",");
 
             for (let tag of responseTags) {
                 let existingTag = tags.find((t) => t.frameGroup == frameGroup && t.tag.includes(tag));
+                tag = tag.trim();
 
                 if (existingTag == null) {
-                    tags.push({ tag: tag, frameGroup: frameGroup++ });
+                    tags.push({ tag: tag, frameGroup: frameGroup });
                 } else if (/\d/.test(existingTag) && /\d/.test(existingTag)) {
                     let existingTagCount = existingTag.match(/\d+/)[0];
                     let newTagCount = existingTagCount.match(/\d+/)[0];
@@ -80,12 +103,17 @@ async function main() {
                 }
             }
 
-            requestImagesArray = [];
+            console.log(`Frame group ${frameGroup} tags added`);
+            frameGroup++;
+
+            pause();
         }
+
+        console.log(`All frames analyzed (${totalAnalysisTimeSeconds.toFixed(2)}s)\n`);
+        console.log(`Results:`);
+        console.log(tags.sort((a, b) => a.frameGroup - b.frameGroup));
     } catch (error) {
         console.log(error);
     }
-
-    console.log(tags.sort((a, b) => a.frameGroup - b.frameGroup));
 }
 main();
